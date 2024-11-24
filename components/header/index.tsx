@@ -41,15 +41,7 @@ type Tabs = {
 }
 
 const tabs: Tabs[] = [
-  { name: 'Hi', href: '/readme', variant: 'smile' },
-  {
-    name: 'Roadmap',
-    href: 'https://shadcnform.featurebase.app/',
-    variant: 'arrow',
-    isNewTab: true,
-  },
-  { name: 'Components', href: '/components', variant: 'linkHover2' },
-  { name: 'Templates', href: '/templates', variant: 'linkHover2' },
+  { name: 'Honorable Mentions', href: '/readme', variant: 'smile' },
 ]
 
 export default function Header() {
