@@ -1,22 +1,7 @@
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
+import { authkitMiddleware } from '@workos-inc/authkit-nextjs';
 
-export function middleware(request: NextRequest) {
-  // Get the pathname of the request (e.g. /templates/authentication)
-  const pathname = request.nextUrl.pathname
+export default authkitMiddleware();
 
-  // Define redirects for specific paths
-  if (pathname === '/templates' || pathname.match(/^\/templates\/[^/]+$/)) {
-    return NextResponse.redirect(
-      new URL('/templates/authentication/login', request.url),
-    )
-  }
-
-  // Continue with the request if no redirect is needed
-  return NextResponse.next()
-}
-
-// Add matcher for the middleware to only run on specific paths
-export const config = {
-  matcher: ['/templates', '/templates/:category'],
-}
+// // Match against pages that require authentication
+// // Leave this out if you want authentication on every page in your application
+// export const config = { matcher: ["/api/:path*"] };

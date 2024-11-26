@@ -6,6 +6,7 @@ import NextTopLoader from 'nextjs-toploader'
 import './globals.css'
 
 import AllProviders from '@/providers'
+import { AuthKitProvider } from '@workos-inc/authkit-nextjs'
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -73,17 +74,19 @@ export default function RootLayout({
             data-website-id="17f8a974-0a7f-426d-857a-daa8d80cc12e"
           ></script>
         </head>
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          <div>
-            <NextTopLoader color="#FF9432" showSpinner={false} />
-            <Toaster />
-            <AllProviders>
-              <main className="min-h-[70vh]">{children}</main>
-            </AllProviders>
-          </div>
-        </body>
+        <AuthKitProvider>
+          <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          >
+            <div>
+              <NextTopLoader color="#FF9432" showSpinner={false} />
+              <Toaster />
+              <AllProviders>
+                <main className="min-h-[70vh]">{children}</main>
+              </AllProviders>
+            </div>
+          </body>
+        </AuthKitProvider>
       </html>
     </ViewTransitions>
   )

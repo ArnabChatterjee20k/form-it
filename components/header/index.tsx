@@ -19,23 +19,24 @@ import { FaXTwitter } from 'react-icons/fa6'
 import Logo from '@/assets/logo.svg'
 import { usePathname } from 'next/navigation'
 import { ThemeSwitch } from '../ui/theme-switch'
-
+import ClientServerWrapper from '../ClientServerWrapper'
+import SignInButton from '../auth/signInButton'
 type Tabs = {
   name: string
   href: string
   isNewTab?: boolean
   variant:
-  | 'default'
-  | 'destructive'
-  | 'outline'
-  | 'secondary'
-  | 'ghost'
-  | 'link'
-  | 'arrow'
-  | 'smile'
-  | 'linkHover2'
-  | null
-  | undefined
+    | 'default'
+    | 'destructive'
+    | 'outline'
+    | 'secondary'
+    | 'ghost'
+    | 'link'
+    | 'arrow'
+    | 'smile'
+    | 'linkHover2'
+    | null
+    | undefined
   className?: string
   isUpdated?: boolean
 }
@@ -47,14 +48,19 @@ const tabs: Tabs[] = [
 export default function Header() {
   const pathname = usePathname()
   const currentBasePath = '/' + pathname.split('/')[1]
-
   return (
     <header className="max-w-5xl mx-auto flex justify-between items-center my-5 px-5 lg:px-0">
-      <Link href="/" className="cursor-pointer md:hidden dark:bg-white dark:rounded-lg p-2">
+      <Link
+        href="/"
+        className="cursor-pointer md:hidden dark:bg-white dark:rounded-lg p-2"
+      >
         <Logo className="w-9 h-9" />
       </Link>
       <nav className="hidden md:flex items-center gap-3">
-        <Link href="/" className="cursor-pointer dark:bg-white dark:rounded-lg p-1">
+        <Link
+          href="/"
+          className="cursor-pointer dark:bg-white dark:rounded-lg p-1"
+        >
           <Logo className="w-9 h-9" />
         </Link>
         {tabs.map((tab, i) => (
@@ -87,10 +93,7 @@ export default function Header() {
 
       <div className="hidden md:flex items-center gap-3">
         <Link href="/playground">
-          <Button
-            variant="gooeyLeft"
-            className="g-primary rounded-full px-4"
-          >
+          <Button variant="gooeyLeft" className="g-primary rounded-full px-4">
             Playground
           </Button>
         </Link>
