@@ -67,10 +67,16 @@ export async function updateFormSettings(
       _id: new mongoose.Types.ObjectId(formId),
     })
     if (!form) return errorResponse
+  
+    Object.entries(validatedResult.data).forEach(([key, value]) => {
+      if (key in form) {
+        (form as any)[key] = value;
+      }
+    });
 
-    const formSettings = { ...form, newFormSettings }
-    await form.updateOne(formSettings)
-    return { status: true, ...formSettings }
+    await form.save()
+
+    return { status: true }
   } catch (error) {
     return errorResponse
   }
@@ -78,7 +84,10 @@ export async function updateFormSettings(
 
 export async function deleteFormSettings(userID: string, formId: string) {
   try {
-    const deletedResponse = await Form.deleteOne({userId:userID,_id:new mongoose.Types.ObjectId(formId)})
+    const deletedResponse = await Form.deleteOne({
+      userId: userID,
+      _id: new mongoose.Types.ObjectId(formId),
+    })
     return Boolean(deletedResponse.deletedCount)
   } catch (error) {
     return false

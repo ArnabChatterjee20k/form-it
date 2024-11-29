@@ -21,8 +21,8 @@ const formSubmissionMessageSchema = new Schema({
   link: String,
 })
 
-// Define the main form schema
-const formSchema = new Schema<FormType>(
+type FormModel = Model<FormType>
+const formSchema = new Schema<FormType,FormModel>(
   {
     name: {
       type: String,
@@ -52,6 +52,6 @@ const formSchema = new Schema<FormType>(
   },
 )
 
-const Form: Model<FormType> = mongoose.model<FormType>('Form', formSchema)
+const Form: FormModel = mongoose.model<FormType,FormModel>('Form', formSchema)
 
 export default Form
